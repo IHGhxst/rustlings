@@ -5,24 +5,24 @@
 // Execute `rustlings hint move_semantics6` or use the `hint` watch subcommand
 // for a hint.
 
-// I AM NOT DONE
+// On ajoute une référence à la variable data dans la fonction get_char et on enlève la référence dans la fonction string_uppercase
 
 fn main() {
     let data = "Rust is great!".to_string();
 
-    get_char(data);
+    let char = get_char(&data);
 
-    string_uppercase(&data);
+    string_uppercase(data);
 }
 
 // Should not take ownership
-fn get_char(data: String) -> char {
+fn get_char(data: &String) -> char {
     data.chars().last().unwrap()
 }
 
 // Should take ownership
-fn string_uppercase(mut data: &String) {
-    data = &data.to_uppercase();
+fn string_uppercase(mut data: String) {
+    let uppercase_data = data.to_uppercase();
 
     println!("{}", data);
 }
